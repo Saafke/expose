@@ -1,5 +1,7 @@
 ## ExPose: Monocular Expressive Body Regression through Body-Driven Attention
 
+Xavier: this branch processes videos
+
 [![report](https://img.shields.io/badge/arxiv-report-red)](https://arxiv.org/abs/2008.09062)
 
 [[Project Page](https://expose.is.tue.mpg.de/)] 
