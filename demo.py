@@ -224,6 +224,9 @@ def main(
     degrees: Optional[List[float]] = [],
 ) -> None:
 
+    # Xavier:
+    counter = 0
+
     device = torch.device('cuda')
     if not torch.cuda.is_available():
         logger.error('CUDA is not available!')
@@ -405,13 +408,18 @@ def main(
 
         for idx in tqdm(range(len(body_targets)), 'Saving ...'):
             fname = body_targets[idx].get_field('fname')
-            curr_out_path = osp.join(demo_output_folder, fname)
+            #curr_out_path = osp.join(demo_output_folder, fname)
+            curr_out_path = demo_output_folder # Xavier
             os.makedirs(curr_out_path, exist_ok=True)
 
             if save_vis:
                 for name, curr_img in out_img.items():
-                    pil_img.fromarray(curr_img[idx]).save(
-                        osp.join(curr_out_path, f'{name}.png'))
+                    print("NAME:", name)
+                    if name == 'hd_overlay':
+                        
+                        pil_img.fromarray(curr_img[idx]).save(
+                            osp.join(curr_out_path, "{:04d}.png".format(counter)))
+                        counter += 1
 
             if save_mesh:
                 # Store the mesh predicted by the body-crop network
